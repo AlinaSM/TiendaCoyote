@@ -34,7 +34,7 @@ abstract class Model{
     protected function getQuery(){
         //$rows = null;
         $this->dbOpen();
-        $result = $this->cnn->query($this->query); //$this->query
+        $result = $this->cnn->query($this->query); 
         
         while( $this->rows[] = $result->fetch(PDO::FETCH_ASSOC) );
         $result = null;
