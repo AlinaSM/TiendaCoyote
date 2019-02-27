@@ -17,7 +17,7 @@ abstract class Model{
     //Metodo privado para conectarnos a la base de datos
     private function dbOpen(){
         try{
-            $this->cnn =  new PDO("mysql:host=localhost;dbname=dbTiendaCoyote","root","", self::$db_option_charset);
+            $this->cnn =  new PDO("mysql:host=localhost;dbname=dbTienda","root","", self::$db_option_charset);
             $this->cnn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }catch(Exception $e){
             echo "El error se produjo: ".$e->getLine();

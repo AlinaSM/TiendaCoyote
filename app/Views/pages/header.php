@@ -18,6 +18,7 @@
                 <a class="nav-link  dropdown-toggle " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Departamentos
                 </a>
+                <!-- TODO: Sacarlo desde la base de datos  -->
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="">Deportes</a>
                     <a class="dropdown-item" href="">Electronica</a>

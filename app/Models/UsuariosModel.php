@@ -17,16 +17,16 @@ class UsuariosModel extends Model{
             $$key = $value;
         }
 
-        $this->query = "INSERT INTO usuarios(id, alias, nombre, apellidos, fecha_nac, contrasena, email, tipo) 
-                        VALUES ($id, '$alias', '$nombre', '$apellidos', '$fecha_nac', MD5('$contrasena'), '$email', '$tipo')";
+        $this->query = "INSERT INTO usuario( username, nombre, apellidos,  contrasena, email, tipo, direccion) 
+                        VALUES ( '$username', '$nombre', '$apellido', MD5('$contrasena'), '$email', '$tipo', '$direccion')";
 
         $this->setQuery();
     }
 
     public function read( $id_usuario ='' ){
         $this->query =  $id_usuario != '' 
-                        ? "SELECT * FROM usuarios WHERE id = $id_usuario;" 
-                        : "SELECT * FROM usuarios;";
+                        ? "SELECT * FROM usuario WHERE id = $id_usuario;" 
+                        : "SELECT * FROM usuario;";
         $this->getQuery();
 
         return $this->rows;
@@ -38,7 +38,7 @@ class UsuariosModel extends Model{
             $$key = $value;
         }
 
-        $this->query = "UPDATE usuarios SET id = $id, alias = '$alias', 
+        $this->query = "UPDATE usuario SET id = $id, username = '$username', 
                         nombre = '$nombre', apellidos = '$apellidos', fecha_nac = '$fecha_nac', 
                         contrasena = MD5('$contrasena'), email = '$email', tipo = '$tipo' WHERE id = $id";
 
@@ -46,12 +46,12 @@ class UsuariosModel extends Model{
     }
 
     public function delete( $id = '' ){
-        $this->query = "DELETE FROM usuarios WHERE id = $id";
+        $this->query = "DELETE FROM usuario WHERE id = $id";
         $this->setQuery();
     }
 
     public function validate( $username = '', $password = '' ){
-        $this->query =  "SELECT * FROM usuarios WHERE alias = '$username' AND contrasena = MD5('$password');";
+        $this->query =  "SELECT * FROM usuario WHERE username = '$username' AND contrasena = MD5('$password');";
         $this->getQuery();
 
         $data = array();

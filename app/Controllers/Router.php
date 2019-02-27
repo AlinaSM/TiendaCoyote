@@ -15,6 +15,7 @@ class Router{
         if( !isset( $_SESSION['ok'] ) ) $_SESSION['ok'] = false;
         
         $frm = new ViewController();
+        $usersController = new UsuariosController();
         $isAdmin = null; // $_SESSION['tipo'] == 'admin' ? true : false
 
         if( $_SESSION['ok'] ){
@@ -24,19 +25,41 @@ class Router{
             switch($route){
                
                 case 'inicio':
-                    $frm->loadView('inicio', $isAdmin);
+                $frm->loadView('inicio', $isAdmin);
                 break;
 
                 case 'registro':
                 $frm->loadView('registro', $isAdmin);
                 break;
 
+                case 'login':
+                $frm->loadView('login', $isAdmin);
+                break;
+
                 case 'buscador':
                 $frm->loadView('buscador', $isAdmin);
                 break;
 
-                case 'detalle-articulo':
-                $frm->loadView('detalle-articulo', $isAdmin);
+                case 'usuario/registrar':
+                //$frm->loadView('detalle-articulo', $isAdmin);
+                /* Seccion para crear a un usuario */
+                $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : 'normal';
+                $new_user = array(
+                    'nombre'     =>  $_POST['nombre'], 
+                    'apellido'   =>  $_POST['apellido'], 
+                    'email'      =>  $_POST['email'], 
+                    'username'   =>  $_POST['username'], 
+                    'contrasena' =>  $_POST['contrasena'], 
+                    'direccion'  =>  $_POST['direccion'],
+                    'tipo'       =>  $tipo
+                );
+                $usersController->create($new_user);
+                print_r($new_user);
+                header('Location: /page/registro-exitoso');
+                break;
+
+                case 'registro-exitoso':
+                $frm->loadView('registro-exitoso', $isAdmin);
                 break;
 
                 //Paginas para los usuarios registrados
