@@ -35,13 +35,16 @@ class Router{
                 case 'login':
                 $frm->loadView('login', $isAdmin);
                 break;
-
+                
+                case 'login':
+                $frm->loadView('login', $isAdmin);
+                break;
+                //login/noexiste
                 case 'buscador':
                 $frm->loadView('buscador', $isAdmin);
                 break;
 
                 case 'usuario/registrar':
-                //$frm->loadView('detalle-articulo', $isAdmin);
                 /* Seccion para crear a un usuario */
                 $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : 'normal';
                 $new_user = array(
@@ -54,7 +57,7 @@ class Router{
                     'tipo'       =>  $tipo
                 );
                 $usersController->create($new_user);
-                print_r($new_user);
+                
                 header('Location: /page/registro-exitoso');
                 break;
 
@@ -63,8 +66,18 @@ class Router{
                 break;
 
                 //Paginas para los usuarios registrados
-                case 'carrito':
-                $frm->loadView('carrito', $isAdmin);
+                case 'usuario/validar':
+                $data = $usersController->validate($_POST['username'], $_POST['contrasena']);
+                /* Si la variable data esta vacia entonces no encontro ningun usuario con 
+                ese nombre o la contraseña es incorrecta*/
+                if($data){
+                    //Inicia sesion del usuario
+                    header('Location: /coyote/');
+                }else{
+                    //manda por GET que hubo un error al iniciar sesion
+                    header('Location: /coyote/page/login/noexiste');
+                }
+                
                 break;
 
                 case 'compra':

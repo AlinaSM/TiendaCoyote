@@ -1,8 +1,13 @@
+<?php
+session_start();
+require_once('php/Models/CatalogoTiposModel.php');
+require_once('php/Controllers/CatalogoTiposController.php');
+?>
 <header class="navbar  navbar-expand-lg  navbar-light bg-warning"  >
 
         <!-- Aqui va el logo de nuestra pagina -->
-        <a class="navbar-brand mr-5" href="inicio">
-            <img class="logo-principal" src="../page/resources/img/Logo-Coyote.png" width= "130px"> 
+        <a class="navbar-brand mr-5" href="index.php">
+            <img class="logo-principal" src="resources/img/Logo-Coyote.png" width= "130px"> 
         </a>
 
         <!-- Esto es el recuadro del menu que sale al minimizar la pagina  -->
@@ -20,13 +25,9 @@
                 </a>
                 <!-- TODO: Sacarlo desde la base de datos  -->
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="">Deportes</a>
-                    <a class="dropdown-item" href="">Electronica</a>
-                    <a class="dropdown-item" href="">Herramientas</a>
-                    <a class="dropdown-item" href="">Muebles</a>
-                    <a class="dropdown-item" href="">Ropa</a>
-                    <a class="dropdown-item" href="">Tecnologia</a>
-                    <a class="dropdown-item" href="">Vehiculos</a>
+                    <?php foreach ($CatalogoTiposController->read() as $tipo) : ?>
+                        <a class="dropdown-item" href="buscar-categoria.php?tipo=<?= $tipo['id'] ?>&categoria=<?= $tipo['tipo'] ?>"><?= $tipo['tipo'] ?></a>
+                    <?php endforeach; ?>
                 </div>
             </li>
             
@@ -37,15 +38,29 @@
                 <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
             </form>
             </li>
-            <!-- Botones de inicio de sesion y de registro -->
+               
+            <?php if (!isset($_SESSION['id'])): ?>
+                <!-- Botones de inicio de sesion y de registro -->
             <li class="nav-item ml-5">
-                <a class="nav-link" href="login">Iniciar Sesión</a>
+                <a class="nav-link" href="index.php">Iniciar Sesión</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="registro">Registrarse</a>
-            </li>           
-        
+                <a class="nav-link" href="registro.php">Registrarse</a>
+            </li> 
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['id'])): ?>
+                <li class="nav-item ml-5">
+                    <a class="nav-link" href="vende-articulo.php">Vender</a>
+                </li>
+                <li class="nav-item ml-5">
+                    <a class="nav-link" href="perfil-usuario.php">Perfil</a>
+                </li>
+                <li class="nav-item ml-5">
+                    <a class="nav-link" href="php/Controllers/UsuariosController.php?op=cerrar-sesion">Cerrar Sesión</a>
+                </li>
+            <?php endif; ?>
             </ul>
         </div>
     </header>
