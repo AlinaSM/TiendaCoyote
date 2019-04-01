@@ -4,7 +4,7 @@ require_once('Domain.php');
 require_once('../Models/EstadosModel.php');
 
 $stateController = new EstadosModel();
-echo "Inicio";
+
 if( isset($_POST['idestado']) ){
     $idEstado = $_POST['idestado'];
     

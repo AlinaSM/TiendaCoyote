@@ -1,7 +1,7 @@
 <?php
 require_once('Model.php');
 
-class UsuariosModel extends Model{
+class ClientesModel extends Model{
     private $id;
     private $alias;
     private $nombre;
@@ -15,8 +15,8 @@ class UsuariosModel extends Model{
             $$key = $value;
         }
         //Sentencia de MySQL para insertar un registro
-        $this->query = "INSERT INTO clientes ( nombre, apellidos, alias, contrasena) 
-                        VALUES  (  '$nombre', '$apellido', '$username', MD5('$contrasena') )";
+        $this->query = "INSERT INTO clientes ( nombre, apellidos, alias, contrasena ) 
+                        VALUES ( '$nombre', '$apellido', '$alias', MD5('$contrasena') )";
 
         $this->setQuery();
     }
@@ -73,9 +73,28 @@ class UsuariosModel extends Model{
             $$key = $value;
         }
         //Sentencia de MySQL para insertar un registro
-        $this->query = "INSERT INTO clientes_has_email (clientes_id, email_id) VALUES ('$cliente_id', '$email_id');";
+        $this->query = "INSERT INTO clientes_has_email (clientes_id, email_id) VALUES ('$clientes_id', '$email_id');";
         $this->setQuery();
     }
 
+    public function HasTelefono( $data = array() ){
+        foreach($data as $key => $value){
+            //Variables variables (variable dinamica)
+            $$key = $value;
+        }
+        //Sentencia de MySQL para insertar un numero telefonico al cliente
+        $this->query = "INSERT INTO telefono (idclientes, telefono) VALUES ('$clientes_id', '$telefono');";
+        $this->setQuery();
+    }
+
+    public function addDireccion( $data = array() ){
+        foreach($data as $key => $value){
+            //Variables variables (variable dinamica)
+            $$key = $value;
+        }
+        //Sentencia de MySQL para insertar una direccion al cliente
+        $this->query = "INSERT INTO direccion_has_clientes ( direccion_id , clientes_id ) VALUES ($direccion_id, $clientes_id)";
+        $this->setQuery();
+    }
 
 }

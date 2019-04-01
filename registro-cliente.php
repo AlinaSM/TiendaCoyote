@@ -10,7 +10,7 @@ require_once('header.php');
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center">Registro de Cliente</h5>
-                        <form class="form-signin" id="frmRegistro" autocomplete="off" method="POST" action="php/Controllers/ClientesController.php?op=registrar-cliente">
+                        <form class="form-signin" id="frmRegistro" autocomplete="off" method="POST" action="php/Controllers/ClientesController.php">
                             
                             <div class="row">
                                 <div class="col">
@@ -32,7 +32,7 @@ require_once('header.php');
 
                                     <div class="form-label-group">
                                         <label for="Telefono">Telefono</label>
-                                        <input type="email" id="Telefono" name="telefono"  class="form-control" placeholder="744-0000-000"  required >
+                                        <input type="text" id="Telefono" name="telefono"  class="form-control" placeholder="744-0000-000"  required >
                                     </div>
 
                                     <div class="form-label-group">
@@ -78,17 +78,17 @@ require_once('header.php');
 
                                     <div class="form-label-group">
                                         <label for="num_ext">Numero Exterior</label>
-                                        <input type="text" id="num_ext" name="num_ext" class="form-control" placeholder=""  required >
+                                        <input type="number" id="num_ext" name="num_ext" class="form-control" placeholder=""  required >
                                         </div>
 
                                     <div class="form-label-group">
                                         <label for="num_int">Numero Interior</label>
-                                        <input type="text" id="num_int" name="num_int" class="form-control" placeholder="" required >
+                                        <input type="number" id="num_int" name="num_int" class="form-control" placeholder="" required >
                                     </div>
 
                                 </div>
                             </div>
-                       
+                            <input type="hidden" name="op" value="registrar-cliente">
                             <button class="btn btn-lg btn-primary btn-block text-uppercase  my-3" type="submit" id="idBotonRegistro">Registrarse</button>
                             <hr class="my-4">
 

@@ -1,11 +1,13 @@
 <?php
 require_once('../Models/ClientesModel.php');
 require_once('../Models/EmailModel.php');
+require_once('../Models/DireccionModel.php');
 //require_once('../Models/UsuariosModel.php');
 require_once('Domain.php');
 
 $clientesController = new ClientesModel();
 $emailController = new EmailModel();
+$direccionController = new DireccionModel();
 
 if(isset($_POST['login-normal'])){
     $data = $clientesController->validate($_POST['username'], $_POST['contrasena']);
@@ -31,18 +33,22 @@ if(isset($_POST['login-normal'])){
 }
 
 
-if(isset($_GET['op'])){
+if(isset($_POST['op'])){
 
-    switch($_GET['op']){
-        
-        case 'cerrar-sesion':
-            session_start();
-            session_destroy();
-            header("Location: /$DomainName/index.php");
-        break;
+    switch($_POST['op']){
 
-        case 'registrar-clientes':
+        case 'registrar-cliente':
+            
             //Registramos la direccion del Cliente
+            $new_address = array(
+                'colonia'       =>  $_POST['colonia'], 
+                'calle'         =>  $_POST['calle'],  
+                'num_ext'       =>  $_POST['num_ext'], 
+                'num_int'       =>  $_POST['num_int'], 
+                'estados_id'    =>  $_POST['estado'], 
+                'municipios_id' =>  $_POST['municipio'],
+            );
+            $direccionController->create($new_address);  
 
             //Registramos los datos del Cliente
             $new_user = array(
@@ -50,9 +56,16 @@ if(isset($_GET['op'])){
                 'apellido'    =>  $_POST['apellido'],  
                 'alias'       =>  $_POST['alias'], 
                 'contrasena'  =>  $_POST['contrasena'], 
-                'iddireccion' =>  $idDireccion
             );
             $clientesController->create($new_user);
+
+
+            //Relacionando la direccion al cliente
+            $clientesController->addDireccion( array(
+                'clientes_id'    =>  $clientesController->lastId(),
+                'direccion_id'  =>  $direccionController->lastId()
+            ));
+
 
             //Registramos el email del Cliente
             $arr = array(
@@ -61,11 +74,17 @@ if(isset($_GET['op'])){
             $emailController->create($arr);
 
             $clientesController->HasEmail(array(
-                'usuario_id' => $clientesController->lastId(),
+                'clientes_id' => $clientesController->lastId(),
                 'email_id' =>  $emailController->lastId()
             ));
-            //Registramos el telefono del cliente
 
+            
+            //Registramos el telefono del cliente
+            $clientesController->HasTelefono(array(
+                'clientes_id' => $clientesController->lastId(),
+                'telefono'   => $_POST['telefono']
+            ));
+            
             header("Location: /$DomainName/registro-exitoso.php");
         break;
 
