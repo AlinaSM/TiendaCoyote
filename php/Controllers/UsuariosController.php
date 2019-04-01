@@ -1,17 +1,15 @@
 <?php
 require_once('../Models/UsuariosModel.php');
 require_once('../Models/EmailModel.php');
-//require_once('../Models/UsuariosModel.php');
 require_once('Domain.php');
 
 $usersController = new UsuariosModel();
-//$clientsController = new ClientesModel();
 $emailController = new EmailModel();
 
+/*
 if(isset($_POST['login-normal'])){
     $data = $usersController->validate($_POST['username'], $_POST['contrasena']);
-    /* Si la variable data esta vacia entonces no encontro ningun usuario con 
-    ese nombre o la contraseña es incorrecta*/
+   
     if($data){
         //Inicia sesion del usuario
         session_start();
@@ -31,10 +29,10 @@ if(isset($_POST['login-normal'])){
     }
 }
 
+*/
+if(isset($_POST['op'])){
 
-if(isset($_GET['op'])){
-
-    switch($_GET['op']){
+    switch($_POST['op']){
         
         case 'cerrar-sesion':
             session_start();
@@ -42,45 +40,34 @@ if(isset($_GET['op'])){
             header("Location: /$DomainName/index.php");
         break;
 
-        case 'registrar-usuarios':
+        case 'registrar-usuario':
+        echo "Registro";
+
             $new_user = array(
                 'nombre'     =>  $_POST['nombre'], 
                 'apellido'   =>  $_POST['apellido'], 
-                'email'      =>  $_POST['email'], 
                 'alias'      =>  $_POST['alias'], 
                 'contrasena' =>  $_POST['contrasena'], 
-                //'direccion'  =>  $_POST['direccion'],
                 'tipo'       =>  $_POST['tipo']
             );
-            
             $usersController->create($new_user);
 
-            $arr = array(
+            echo "Suebiendo USER";
+            /*$arr = array(
                 'email' => $_POST['email'],
             );
             $emailController->create($arr);
+            echo "Subiendo EMAIL";
 
             $usersController->HasEmail(array(
                 'usuario_id' => $usersController->lastId(),
                 'email_id' =>  $emailController->lastId()
             ));
-
-            header("Location: /$DomainName/registro-exitoso.php");
+            echo "Subiendo RELACION";*/
+            //header("Location: /$DomainName/registro-exitoso.php");
         break;
 
-        case 'registrar-cliente':
-            $new_user = array(
-                'nombre'     =>  $_POST['nombre'], 
-                'apellido'   =>  $_POST['apellido'], 
-                'alias'      =>  $_POST['username'], 
-                'contrasena' =>  $_POST['contrasena'], 
-            );
-            $usersController->create($new_user);
-
-           
-
-            header("Location: /$DomainName/registro-exitoso.php");
-        break;
+        
         
     }
 }

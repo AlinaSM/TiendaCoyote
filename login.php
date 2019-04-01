@@ -16,11 +16,11 @@ require_once('header.php');
                                 </div>  
                         <?php endif; ?>
                         </form>
-                        <form class="form-signin" id="frmRegistro" autocomplete="off" method="POST" action="php/Controllers/UsuariosController.php">
-                            <input type="hidden" name="login-normal">
+                        <form class="form-signin" id="frmRegistro" autocomplete="off" method="POST" action="php/Controllers/LoginController.php">
+                            <input type="hidden" name="login">
                             <div class="form-label-group">
                                 <label for="Usuario">Nombre de Usuario</label>
-                                <input type="text" id="Usuario" name="username" class="form-control" placeholder="Nombre de Usuario"  >
+                                <input type="text" id="Usuario" name="alias" class="form-control" placeholder="Nombre de Usuario"  >
                                 </div>
 
                             <div class="form-label-group">

@@ -7,7 +7,6 @@ class ClientesModel extends Model{
     private $nombre;
     private $apellidos;
     private $contrasena;
-    private $tipo;
 
     public function create( $data = array() ){
         foreach($data as $key => $value){
@@ -47,8 +46,8 @@ class ClientesModel extends Model{
         $this->setQuery();
     }
 
-    public function validate( $username = '', $password = '' ){
-        $this->query =  "SELECT * FROM clientes WHERE alias = '$username' AND contrasena = MD5('$password');";
+    public function validate( $cliente = '', $password = '' ){
+        $this->query =  "SELECT * FROM clientes WHERE alias = '$cliente' AND contrasena = MD5('$password');";
         $this->getQuery();
 
         $data = array();

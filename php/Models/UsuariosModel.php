@@ -9,15 +9,14 @@ class UsuariosModel extends Model{
     private $contrasena;
     private $tipo;
 
-
-    public function create( $usuario_data = array() ){
-        foreach($usuario_data as $key => $value){
+    public function create( $data = array() ){
+        foreach($data as $key => $value){
             //Variables variables (variable dinamica)
             $$key = $value;
         }
         //Sentencia de MySQL para insertar un registro
         $this->query = "INSERT INTO usuario ( nombre, apellidos, tipo, alias, contrasena) 
-                        VALUES  (  '$nombre', '$apellido', '$tipo', '$alias', MD5('$contrasena') )";
+                        VALUES ( '$nombre', '$apellido', '$tipo', '$alias', MD5('$contrasena') )";
 
         $this->setQuery();
     }
