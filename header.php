@@ -1,8 +1,4 @@
-<?php
-session_start();
-require_once('php/Models/CatalogoTiposModel.php');
-require_once('php/Controllers/CatalogoTiposController.php');
-?>
+
 <header class="navbar  navbar-expand-lg  navbar-light bg-warning"  >
 
         <!-- Aqui va el logo de nuestra pagina -->
@@ -42,11 +38,11 @@ require_once('php/Controllers/CatalogoTiposController.php');
             <?php if (!isset($_SESSION['id'])): ?>
                 <!-- Botones de inicio de sesion y de registro -->
             <li class="nav-item ml-5">
-                <a class="nav-link" href="index.php">Iniciar Sesión</a>
+                <a class="nav-link" href="login.php">Iniciar Sesión</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="registro.php">Registrarse</a>
+                <a class="nav-link" href="registro-cliente.php">Registrarse</a>
             </li> 
             <?php endif; ?>
 

@@ -66,4 +66,16 @@ class UsuariosModel extends Model{
         return $last_element['id'];
     }
 
+
+    public function HasEmail( $data = array() ){
+        foreach($data as $key => $value){
+            //Variables variables (variable dinamica)
+            $$key = $value;
+        }
+        //Sentencia de MySQL para insertar un registro
+        $this->query = "INSERT INTO clientes_has_email (clientes_id, email_id) VALUES ('$cliente_id', '$email_id');";
+        $this->setQuery();
+    }
+
+
 }

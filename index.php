@@ -2,7 +2,8 @@
 require_once('head.php');
 require_once('header.php');
 ?>
-<!--
+
+
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -33,11 +34,10 @@ require_once('header.php');
     <span class="sr-only">Next</span>
   </a>
 </div>
--->
 
 
 
 <?php
-require_once('login.php');
+//require_once('login.php');
 require_once('footer.php');
 ?>

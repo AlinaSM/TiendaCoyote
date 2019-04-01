@@ -6,7 +6,7 @@ require_once('header.php');
 <div class="container">
 <img src="resources/img/manita-arriba.png" class="img-fluid my-5  rounded mx-auto d-block" width="250px" >
     <div class="alert alert-success my-5 p-5" role="alert">
-    ¡Usuario registrado correctamente!
+        ¡Usuario registrado correctamente!, Ya puedes iniciar sesion
     </div>  
 </div>
 
