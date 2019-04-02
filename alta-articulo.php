@@ -3,7 +3,9 @@ require_once('head.php');
 require_once('header.php');
 ?>
 
-<?php if(!empty($_SESSION['id'])): ?> <!-- Verifica si la sesion esta iniciada -->
+<?php 
+//if(!empty($_SESSION['id'])): 
+?> <!-- Verifica si la sesion esta iniciada -->
 
     <form action="php/Controllers/ArticulosController.php" name="frmVenta" method="POST" enctype="multipart/form-data"  >
 
@@ -11,25 +13,30 @@ require_once('header.php');
         <h2 class="m-3">Vende tu articulo</h2>
         <div class="row">
             <div class="form-group col-4">
-                <label for="nombreArticulo">Titulo: </label>
+                <label for="nombreArticulo">Nombre: </label>
                 <input type="text" name="nombre" class="form-inline form-control" id="" value="" required>
             </div>
 
             <div class="form-group col-4">
                 <label for="Marca">Marca: </label>
-                <input type="text" name="Marca" class="form-inline form-control" id="" value="" required>
+                <select name = "idmarca" class="custom-select form-control">
+                    <?php foreach ($MarcaController->read() as $marca) : ?>
+                        <option value="<?= $marca['id'] ?>"><?= $marca['marca'] ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
-
+            
             <div class="form-group col-4">
-                <label for="Modelo">Modelo: </label>
-                <input type="text" name="Modelo" class="form-inline form-control" id="" value="" required>
+                <label for="Precio">Precio: </label>
+                <input type="number" name="precio_unitario" class="form-inline form-control" id="" value="" required>
             </div>
+            
         </div>
 
         <div class="row">
             <div class="form-group col-4">
                 <label for="tipo">Tipo: </label>
-                <select name = "Tipo" class="custom-select form-control">
+                <select name = "idtipo_producto" class="custom-select form-control">
                     <?php foreach ($CatalogoTiposController->read() as $tipo) : ?>
                         <option value="<?= $tipo['id'] ?>"><?= $tipo['tipo'] ?></option>
                     <?php endforeach; ?>
@@ -37,14 +44,11 @@ require_once('header.php');
             </div>
 
             <div class="form-group col-4">
-                <label for="Cantidad">Cantidad: </label>
-                <input type="number" name="Cantidad" class="form-inline form-control" value="" id="">            
+                <label for="Cantidad">Unidades: </label>
+                <input type="number" name="unidades" class="form-inline form-control" value="" id="">            
             </div>
 
-            <div class="form-group col-4">
-                <label for="Precio">Precio: </label>
-                <input type="number" name="Precio" class="form-inline form-control" id="" value="" required>
-            </div>
+            
 
         </div>
 
@@ -52,28 +56,12 @@ require_once('header.php');
 
             <div class="form-group col-12">
                 <label for="Descripcion">Descripcion: </label>
-                <textarea name="Descripcion" id="" rows="5"  class="form-control"  required>  </textarea>
+                <textarea name="descripcion" id="" rows="5"  class="form-control"  required>  </textarea>
             </div>
 
         </div>
 
-        <div class="row">
-
-            <div class="form-group col-6">
-
-                <label for="Condicion">Condicion: </label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="Condicion"  value="Nuevo"  required>
-                    <label class="form-check-label" for="Condicion"> Nuevo </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="Condicion"  value="Usado" required>
-                    <label class="form-check-label" for="Condicion"> Usado </label>
-                </div>
-                
-            </div>
-
-        </div>
+    
 
         <div class="row">
             
@@ -87,8 +75,6 @@ require_once('header.php');
             </div>
             
         </div>
-
-        <input type="hidden" name="idUsuario" value="<?php echo $_SESSION['id']; ?>">
         
         <div class="form-group my-4">
             <?php if(isset($_GET['op']) && $_GET['op'] == 'editarArticulo'): ?>
@@ -103,11 +89,15 @@ require_once('header.php');
    
 
     </form>
-<?php else:?>
+<?php 
+//else:
+?>
 <?php
-require_once('Error404.php');
+//require_once('Error404.php');
 ?>                                                  
-<?php endif;?> <!-- endif de session -->
+<?php 
+//endif;
+?> <!-- endif de session -->
 
 <?php
 require_once('footer.php');

@@ -53,7 +53,7 @@ if(isset($_POST['op'])){
             $usersController->create($new_user);
 
             echo "Suebiendo USER";
-            /*$arr = array(
+            $arr = array(
                 'email' => $_POST['email'],
             );
             $emailController->create($arr);
@@ -63,8 +63,8 @@ if(isset($_POST['op'])){
                 'usuario_id' => $usersController->lastId(),
                 'email_id' =>  $emailController->lastId()
             ));
-            echo "Subiendo RELACION";*/
-            //header("Location: /$DomainName/registro-exitoso.php");
+            echo "Subiendo RELACION";
+            header("Location: /$DomainName/registro-exitoso.php");
         break;
 
         

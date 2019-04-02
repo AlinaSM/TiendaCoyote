@@ -1,6 +1,7 @@
 <?php
 require_once('head.php');
 require_once('header.php');
+
 ?>
 
 
@@ -34,6 +35,16 @@ require_once('header.php');
     <span class="sr-only">Next</span>
   </a>
 </div>
+<div class="">
+
+<?php if ( !empty($_SESSION['status']) && $_SESSION['status'] =='usuario'): ?>
+    <div class="alert p-3 " role="alert">
+    <h5 class=" text-center">
+      Bienvenido usuario: <?php echo $_SESSION['nombre'] . ' ' . $_SESSION['apellidos']; ?>
+    </h5>
+        
+    </div>  
+<?php endif; ?>
 
 
 

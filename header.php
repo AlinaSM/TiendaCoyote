@@ -48,7 +48,7 @@
 
             <?php if (isset($_SESSION['id'])): ?>
                 <li class="nav-item ml-5">
-                    <a class="nav-link" href="vende-articulo.php">Vender</a>
+                    <a class="nav-link" href="alta-articulo.php">Vender</a>
                 </li>
                 <li class="nav-item ml-5">
                     <a class="nav-link" href="perfil-usuario.php">Perfil</a>

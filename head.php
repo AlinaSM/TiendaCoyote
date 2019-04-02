@@ -4,7 +4,14 @@ require_once('php/Models/CatalogoTiposModel.php');
 require_once('php/Controllers/CatalogoTiposController.php');
 
 require_once('php/Models/EstadosModel.php');
-require_once('php/Controllers/EstadosController.php');
+require_once('php/Controllers/EstadosController.php'); 
+
+require_once('php/Models/MarcaModel.php');
+require_once('php/Controllers/MarcaController.php');
+
+require_once('php/Models/ArticulosModel.php');
+//require_once('php/Controllers/ArticulosController.php');
+
 ?>
 
 <!DOCTYPE html>

@@ -14,7 +14,7 @@ class ProcesarImagenes {
         $ImagenURL = $carpetaDestino . $GenerarNombre . $ext;
         move_uploaded_file($archivo['Imagen']['tmp_name'],$ImagenURL);
     
-        $ImagenURL = "$DomainName/resources/img/articulos/" . $GenerarNombre . $ext;
+        $ImagenURL = "resources/img/articulos/" . $GenerarNombre . $ext;
         return $ImagenURL;
     }
 

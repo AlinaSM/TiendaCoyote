@@ -17,17 +17,20 @@ if(isset($_POST['login'])){
     ese nombre o la contraseña es incorrecta*/
     if( $dataUser ){
         //Inicia sesion del usuario
-       /* session_start();
-        foreach ($data as $row) {
+        session_start();
+        
+        foreach ($dataUser as $row) {
+            print_r($dataUser);
             $_SESSION['id']        = $row['id'];
             $_SESSION['nombre']    = $row['nombre'];
             $_SESSION['apellidos'] = $row['apellidos'];
             $_SESSION['alias']     = $row['alias'];
             $_SESSION['tipo']      = $row['tipo'];
-            $_SESSION['email']     = $row['email'];
+            //$_SESSION['email']     = $row['email'];
+            $_SESSION['status']    = 'usuario';
         }
         
-        header("Location: /$DomainName/home.php"); */
+        header("Location: /$DomainName/index.php"); 
         echo "Es usuario del sistema";
     }elseif ( $dataClient ){
         echo "Es cliente de la pagina";

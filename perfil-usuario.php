@@ -14,7 +14,7 @@ require_once('header.php');
    <div class="row">
 
        <!-- Card para editar la configuracion del usuario -->
-        <div class="col-sm-4 col-md-4">
+        <div class="col-sm-4 col-md-4 my-3">
             <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Configuracion del Perfil</h5>
@@ -25,18 +25,30 @@ require_once('header.php');
         </div>
         
         <!-- Card de las compras de un usuario -->
-        <div class="col-sm-4 col-md-4">
+        <div class="col-sm-4 col-md-4 my-3">
             <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Mis Compras</h5>
-                <p class="card-text">Registro de tus anteriores compras.</p>
-                <a href="#" class="btn btn-primary">Ver compras</a>
+                <h5 class="card-title">Usuarios del sistema</h5>
+                <p class="card-text">Registro de usuarios.</p>
+                <a href="#" class="btn btn-primary">Ver usuarios</a>
             </div>
             </div>
         </div>
 
+            <!-- Card de las compras de un usuario -->
+            <div class="col-sm-4 col-md-4 my-3">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Proveedores</h5>
+                <p class="card-text">Registro de proveedores.</p>
+                <a href="#" class="btn btn-primary">Ver proveedores</a>
+            </div>
+            </div>
+        </div>
+
+
         <!-- Card de las ventas del usuario  -->
-        <div class="col-sm-4 col-md-4">
+        <div class="col-sm-4 col-md-4 my-3">
             <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Mis Ventas</h5>
